@@ -10,7 +10,7 @@ This program is expected to provide different choices for creating different typ
 ## Roadmap to achieve this plan
 - [X] Locate and verify folder location
   - [X] Get path from user __(can only save locally, with just a file name creating a folder at the location of the executable file.)__
-- [ ] Allow for choice between groupings for user to select
+- [X] Allow for choice between groupings for user to select
   - [ ] Book
     - [ ] Get book name for encompassing folder
       - [ ] Place book name as a global variable for later use
@@ -73,7 +73,7 @@ This program is expected to provide different choices for creating different typ
 - [ ] Generate a hierarchy of names from code and display them to the user to check for validation.
   - [ ] Not validated, ask where it went wrong (redo section)
   - [ ] Valid, create file hierarchy at path location.
-- [ ] End-note advertising NCET.
+- [X] End-note advertising NCET.
 
 ## Possible languages to be used?
 - C++
