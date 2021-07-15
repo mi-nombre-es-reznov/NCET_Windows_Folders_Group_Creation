@@ -50,6 +50,15 @@ void test_file_directory(void)
 			system("CLS");
 			cout << "Path test passed!" << endl;
 			Sleep(1000);
+			system("CLS");
+			cout << "Deleting test folder" << endl;
+			Sleep(1000);
+			if (_rmdir(path.c_str()) == 0)
+			{
+				system("CLS");
+				cout << "Test folder deleted successfully!" << endl;
+				Sleep(1000);
+			}
 		}
 		else
 		{
