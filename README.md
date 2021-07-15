@@ -8,8 +8,8 @@
 This program is expected to provide different choices for creating different types of folder groupings. These groupings will be a set style from books with chapters to creating new user profiles with necessary folders encompassed within them, and each generated folder is to be placed in user-set locations for use within NCompEng Technologies.
 
 ## Roadmap to achieve this plan
-- [ ] Locate and verify folder location
-  - [ ] Get path from user __(can only save locally, with just a file name creating a folder at the location of the executable file.)__
+- [X] Locate and verify folder location
+  - [X] Get path from user __(can only save locally, with just a file name creating a folder at the location of the executable file.)__
 - [ ] Allow for choice between groupings for user to select
   - [ ] Book
     - [ ] Get book name for encompassing folder
