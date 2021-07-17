@@ -26,28 +26,27 @@ string New_User::get_tutee(void)
 void New_User::generate_folders_maps(string main_path)
 {
 	// Local variables
-	string name = "";		// User-defined name
-	string* CORE;			// Core Data Array
-	string* C_DATA;			// Course Data Array
-	string* C_INFO;			// Course Info Array
-	string* NCET;			// NCET Data Array
-	string* AGREEMENT;		// Agreement Array
-	string* BILLING;		// Billing Array
+	string name = "";			// User-defined name
+	string expl = "explorer ";	// Used to concatenate strings to open final path
+	string* CORE;				// Core Data Array
+	string* C_DATA;				// Course Data Array
+	string* C_INFO;				// Course Info Array
+	string* NCET;				// NCET Data Array
+	string* AGREEMENT;			// Agreement Array
+	string* BILLING;			// Billing Array
 
 	set_tutee();			// Sets tutee name
 	name = get_tutee();		// Pulls tutee name from private class
 
+	// Gather all folder arrays
 	system("CLS");
-	cout << "User gave name: " << name << endl;
-	system("pause");
-
-	system("CLS");
-	CORE = get_course_data();
-
-	for (int i = 0; i < 4; i++)
-	{
-		cout << CORE[i] << endl;
-	}
+	CORE = get_core_data();
+	C_DATA = get_course_data();
+	C_INFO = get_course_info();
+	NCET = get_ncet_data();
+	AGREEMENT = get_agreement();
+	BILLING = get_billing();
+	
 
 	// Create CORE folders within tutee folder
 
@@ -64,10 +63,44 @@ void New_User::generate_folders_maps(string main_path)
 	system("pause");
 
 	// Open PATH
-	system("explorer C:\\Users\\06878\\Pictures\\Camera Roll\\");
+	string tmp = (expl + main_path);
+	system(tmp.c_str());
+
+	system("pause");
 }
 
-string* New_User::get_course_data(void)
+// Return Core Array
+string* New_User::get_core_data(void)
 {
 	return CORE_DATA;
+}
+
+// Return Course Data Array
+string* New_User::get_course_data(void)
+{
+	return COURSE_DATA;
+}
+
+// Return Course Info Array
+string* New_User::get_course_info(void)
+{
+	return COURSE_INFO;
+}
+
+// Return NCET Data Array
+string* New_User::get_ncet_data(void)
+{
+	return NCET_DATA;
+}
+
+// Return Agreement Array
+string* New_User::get_agreement(void)
+{
+	return AGREEMENT;
+}
+
+// Return Billing Array
+string* New_User::get_billing(void)
+{
+	return BILLING;
 }

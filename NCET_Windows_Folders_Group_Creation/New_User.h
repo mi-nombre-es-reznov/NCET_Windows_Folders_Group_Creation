@@ -23,7 +23,12 @@ private:
 	void set_tutee(void);				// Set tutee name
 
 	// Private Getter Functions
+	string* get_core_data(void);
 	string* get_course_data(void);
+	string* get_course_info(void);
+	string* get_ncet_data(void);
+	string* get_agreement(void);
+	string* get_billing(void);
 public:
 	void generate_folders_maps(string);	// Creates a mapping of all established folders
 };
