@@ -11,6 +11,7 @@
 #include <fstream>
 #include <direct.h>
 #include <Windows.h>
+#include "New_User.h"
 using namespace std;
 
 // Global Values
@@ -24,6 +25,9 @@ int select_group(void);
 
 int main()
 {
+	// Class Objects
+	New_User user;
+
 	// Local Variables
 	int group_choice = -1;
 
@@ -32,15 +36,15 @@ int main()
 	system("CLS");	// Clear screen before entering options functions
 
 	// Choice mappings
-	if (group_choice == 1)
+	if (group_choice == 0)
 	{
 
+	}
+	else if (group_choice == 1)
+	{
+		user.generate_folders_maps(PATH);
 	}
 	else if (group_choice == 2)
-	{
-
-	}
-	else if (group_choice == 3)
 	{
 		
 	}
