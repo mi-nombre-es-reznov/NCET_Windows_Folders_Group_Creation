@@ -27,29 +27,29 @@ This program is expected to provide different choices for creating different typ
         - [ ] Get sub-chapter count per chapter
       - [ ] Appendixes
         - [ ] Get usable appendixes count
-  - [ ] New User (Tutoring)
-    - [ ] Get name of Tutee
-      - [ ] Save to a global variable for later
-    - [ ] Create main folders to go into Tutees folder
-      - [ ] 1) Course Data
-        - [ ] Create sub-folder for Course Data
-          - [ ] 1) Course Info
-            - [ ] Create sub-folders for Course-info
-              - [ ] 1) Syllabus
-              - [ ] 2) Supplemental Material
-          - [ ] 2) Course Lessons
-      - [ ] 2) NCET Data
-        - [ ] Create sub-folders for NCET Data
-          - [ ] 1) Agreement
-            - [ ] Create sub-folders for Agreement
-              - [ ] 1) Contracts
-              - [ ] 2) Billing
-                - [ ] Create sub-folders for Billing
-                  - [ ] 1) Invoices
-                  - [ ] 2) Reciepts
-          - [ ] 2) Time Clock
-      - [ ] 3) Book Data
-      - [ ] 4) Lessons
+  - [X] New User (Tutoring)
+    - [X] Get name of Tutee
+      - [X] Save to a global variable for later
+    - [X] Create main folders to go into Tutees folder
+      - [X] 1) Course Data
+        - [X] Create sub-folder for Course Data
+          - [X] 1) Course Info
+            - [X] Create sub-folders for Course-info
+              - [X] 1) Syllabus
+              - [X] 2) Supplemental Material
+          - [X] 2) Course Lessons
+      - [X] 2) NCET Data
+        - [X] Create sub-folders for NCET Data
+          - [X] 1) Agreement
+            - [X] Create sub-folders for Agreement
+              - [X] 1) Contracts
+              - [X] 2) Billing
+                - [X] Create sub-folders for Billing
+                  - [X] 1) Invoices
+                  - [X] 2) Reciepts
+          - [X] 2) Time Clock
+      - [X] 3) Book Data
+      - [X] 4) Lessons
   - [ ] Monthly YouTube Gaming
     - [ ] Get month as a container folder
       - [ ] Save month in a global array
