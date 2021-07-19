@@ -1,6 +1,8 @@
 #include "New_User.h"
 #include <iostream>
+#include <Windows.h>
 #include <string>
+#include <direct.h>
 using namespace std;
 
 void New_User::set_tutee(void)
@@ -21,6 +23,38 @@ void New_User::set_tutee(void)
 string New_User::get_tutee(void)
 {
 	return tutee;
+}
+
+void New_User::generate_path_locations(string path, string inter, string core)
+{
+	// Local Variables
+	string full_path = "";
+	int valid = -1;
+
+	// Create full path
+	if (inter == "")
+	{
+		full_path = (path + "/" + core);
+	}
+	else
+	{
+		full_path = (path + "/" + inter + "/" + core);
+	}
+
+	// Generate the folder
+	while (valid != 0)
+	{
+		system("CLS"); // Ensure that the screen is only showing the question for the path.
+
+		valid = _mkdir(full_path.c_str());
+
+		if (valid != 0)
+		{
+			system("CLS");
+			cout << "Folder Creation Failed!" << endl;
+			Sleep(1000);
+		}
+	}
 }
 
 void New_User::generate_folders_maps(string main_path)
@@ -46,21 +80,57 @@ void New_User::generate_folders_maps(string main_path)
 	NCET = get_ncet_data();
 	AGREEMENT = get_agreement();
 	BILLING = get_billing();
+
+	// Intermediate Path
+	string CD = (name + "/" + CORE[0]);
+	string CI = (name + "/" + CORE[0] + "/" + C_DATA[0]);
+	string ND = (name + "/" + CORE[1]);
+	string AG = (name + "/" + CORE[1] + "/" + NCET[0]);
+	string BI = (name + "/" + CORE[1] + "/" + NCET[0] + "/" + AGREEMENT[1]);
 	
+	// Create Encompassing folder with Tutee info
+	generate_path_locations(main_path, "", name);
 
 	// Create CORE folders within tutee folder
+	for (int i = 0; i < 4; i++)						// Core holds 4 strings
+	{
+		generate_path_locations(main_path, name, CORE[i]);
+		cout << "CORE " << (i + 1) << " passed" << endl;
+	}
 
 	// Create COURSE DATA folders
+	for (int i = 0; i < 2; i++)						// Course Data has 2 strings
+	{
+		generate_path_locations(main_path, CD, C_DATA[i]);
+		cout << "CD " << (i + 1) << " passed" << endl;
+	}
 
 	// Create COURSE INFO folders
+	for (int i = 0; i < 2; i++)						// Course Info has 2 strings
+	{
+		generate_path_locations(main_path, CI, C_INFO[i]);
+		cout << "CI " << (i + 1) << " passed" << endl;
+	}
 
 	// Create NCET DATA folders
+	for (int i = 0; i < 2; i++)						// NCET Data has 2 strings
+	{
+		generate_path_locations(main_path, ND, NCET[i]);
+		cout << "NCET " << (i + 1) << " passed" << endl;
+	}
 
 	// Create AGREEMENT folders
+	for (int i = 0; i < 2; i++)						// AGREEMENT has 2 strings
+	{
+		generate_path_locations(main_path, AG, AGREEMENT[i]);
+		cout << "AG " << (i + 1) << " passed" << endl;
+	}
 
 	// Create BILLING folders
-
-	system("pause");
+	for (int i = 0; i < 2; i++)						// BILLING has 2 strings
+	{
+		generate_path_locations(main_path, BI, BILLING[i]);
+	}
 
 	// Open PATH
 	string tmp = (expl + main_path);

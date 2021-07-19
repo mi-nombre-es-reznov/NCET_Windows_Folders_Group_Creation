@@ -63,7 +63,8 @@ int main()
 void test_file_directory(void)
 {
 	// local variable
-	string path = "";
+	string path;
+	string path_app;
 	int valid = -1;
 
 	while (valid != 0)
@@ -72,9 +73,9 @@ void test_file_directory(void)
 		cout << "Local Path to Test: ";
 		cin >> path;
 
-		path += TEST; // Append Test folder to path
+		path_app += TEST; // Append Test folder to path
 
-		valid = _mkdir(path.c_str());
+		valid = _mkdir(path_app.c_str());
 
 		if (valid == 0)
 		{
@@ -84,11 +85,12 @@ void test_file_directory(void)
 			system("CLS");
 			cout << "Deleting test folder" << endl;
 			Sleep(1000);
-			if (_rmdir(path.c_str()) == 0)
+			if (_rmdir(path_app.c_str()) == 0)
 			{
 				system("CLS");
 				cout << "Test folder deleted successfully!" << endl;
 				Sleep(1000);
+				PATH = path;	// Assign global PATH the user-input path
 			}
 		}
 		else

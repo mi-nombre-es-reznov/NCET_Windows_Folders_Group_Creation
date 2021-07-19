@@ -30,7 +30,8 @@ private:
 	string* get_agreement(void);
 	string* get_billing(void);
 public:
-	void generate_folders_maps(string);	// Creates a mapping of all established folders
+	void generate_folders_maps(string);						// Creates a mapping of all established folders
+	void generate_path_locations(string, string, string);	// Creates all folders according to the given mapping
 };
 
 #endif // !NEW_USER_H
