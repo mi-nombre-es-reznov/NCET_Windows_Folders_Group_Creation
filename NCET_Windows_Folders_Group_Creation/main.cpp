@@ -12,6 +12,7 @@
 #include <direct.h>
 #include <Windows.h>
 #include "New_User.h"
+#include "New_Month_YT.h"
 using namespace std;
 
 // Global Values
@@ -27,6 +28,7 @@ int main()
 {
 	// Class Objects
 	New_User user;
+	NEW_MONTH_YT YT;
 
 	// Local Variables
 	int group_choice = -1;
@@ -46,7 +48,7 @@ int main()
 	}
 	else if (group_choice == 2)
 	{
-		
+		YT.generate_mappings(PATH);
 	}
 	else
 	{

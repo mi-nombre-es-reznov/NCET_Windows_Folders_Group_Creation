@@ -1,4 +1,7 @@
 # NCET_Windows_Folders_Group_Creation
+
+### Last major update: __13 July 2021__
+
 	Name: NCET_Windows_Folders_Group_Creation
 	Author: Nicholas Perez-Aguilar
 	Company: NCompEng Technologies
@@ -51,8 +54,8 @@ This program is expected to provide different choices for creating different typ
       - [X] 3) Book Data
       - [X] 4) Lessons
   - [ ] Monthly YouTube Gaming
-    - [ ] Get month as a container folder
-      - [ ] Save month in a global array
+    - [X] Get month as a container folder
+      - [X] Save month in a global array
       - [ ] Create weekend folders
         - [ ] Saturdays
         - [ ] Sundays
@@ -68,11 +71,11 @@ This program is expected to provide different choices for creating different typ
           - [ ] Completed Video
           - [ ] Working Directory
           - [ ] Social Media & YouTube documents
-- [ ] Set up code to pull from different lists/arrays/vectors (choose what is most efficient)
-- [ ] Ask for all names, showing which part of the hierarchy it relates to.
-- [ ] Generate a hierarchy of names from code and display them to the user to check for validation.
-  - [ ] Not validated, ask where it went wrong (redo section)
-  - [ ] Valid, create file hierarchy at path location.
+- [X] Set up code to pull from different lists/arrays/vectors (choose what is most efficient)
+- [X] Ask for all names, showing which part of the hierarchy it relates to.
+- [X] Generate a hierarchy of names from code and display them to the user to check for validation.
+  - [X] Not validated, ask where it went wrong (redo section)
+  - [X] Valid, create file hierarchy at path location.
 - [X] End-note advertising NCET.
 
 ## Possible languages to be used?
