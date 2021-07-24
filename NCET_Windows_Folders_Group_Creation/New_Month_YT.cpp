@@ -2,12 +2,15 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <direct.h>
 using namespace std;
 
 void NEW_MONTH_YT::generate_mappings(string path)
 {
 	// Local Variables
+	string expl = "explorer ";	// Used to concatenate strings to open final path
 	string month;
+	string full_path;
 	
 	// Get month to use as encompassing folder
 	set_month();
@@ -16,6 +19,20 @@ void NEW_MONTH_YT::generate_mappings(string path)
 	system("CLS");
 	cout << "Month selected: " << month << endl;
 	system("pause");
+
+	// Create encompassing folder
+	system("CLS");
+	full_path = (path + "/" + month);
+	if (_mkdir(full_path.c_str()) == 0)
+	{
+		cout << "Base folder created!" << endl;
+		Sleep(1000);
+	}
+	else
+	{
+		cout << "Base folder creation failed!" << endl;
+		Sleep(1000);
+	}
 
 	// Create gaming days folders - 'Saturdays' & 'Sundays'
 
@@ -30,6 +47,8 @@ void NEW_MONTH_YT::generate_mappings(string path)
 	// Generate subfolders for each day in posting month
 
 	// Open folder once completed
+	string tmp = (expl + path);
+	system(tmp.c_str());
 }
 
 // Set the month

@@ -135,8 +135,6 @@ void New_User::generate_folders_maps(string main_path)
 	// Open PATH
 	string tmp = (expl + main_path);
 	system(tmp.c_str());
-
-	system("pause");
 }
 
 // Return Core Array
