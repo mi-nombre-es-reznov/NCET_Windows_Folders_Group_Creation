@@ -10,13 +10,13 @@ class NEW_MONTH_YT
 {
 private:
 	// Core Content
-	string final_month;																						// Holds current month 
-	int num_d1;																							// Holds the number of days in the month for day 1
-	int num_d2;																							// Holds the number of days in the month for day 2
-	int num_d3;																							// Holds the number of days in the month for day 3
-	string d1_name;																						// Holds the name of the day in the month for day 1
-	string d2_name;																						// Holds the name of the day in the month for day 2
-	string d3_name;																						// Holds the name of the day in the month for day 3
+	string final_month;																					// Holds current month 
+	int num_d1 = 0;																						// Holds the number of days in the month for day 1
+	int num_d2 = 0;																						// Holds the number of days in the month for day 2
+	int num_d3 = 0;																						// Holds the number of days in the month for day 3
+	string d1_name[5] = { "0", "0", "0", "0", "0" };													// Holds the name of the day in the month for day 1
+	string d2_name[5] = { "0", "0", "0", "0", "0" };													// Holds the name of the day in the month for day 2
+	string d3_name[5] = { "0", "0", "0", "0", "0" };													// Holds the name of the day in the month for day 3
 	string sub_folders[3] = { "Completed Content", "Working Directory", "Socials and YT Documents" };	// Holds the subfolders that go into every assigned folder
 	string month_select[12] = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };	// Holds all months in a year
 
@@ -34,12 +34,12 @@ public:
 	int get_num_d1(void);			// Gets the number of days in the month for Day 1
 	int get_num_d2(void);			// Gets the number of days in the month for Day 2
 	int get_num_d3(void);			// Gets the number of days in the month for Day 3
-	void set_d1_name(string);		// Sets the name of the day in the month for Day 1
-	void set_d2_name(string);		// Sets the name of the day in the month for Day 2
-	void set_d3_name(string);		// Sets the name of the day in the month for Day 3
-	string get_d1_name(void);		// Gets the name of the day in the month for Day 1
-	string get_d2_name(void);		// Gets the name of the day in the month for Day 2
-	string get_d3_name(void);		// Gets the name of the day in the month for Day 3
+	void set_d1_name(int);			// Sets the name of the day in the month for Day 1
+	void set_d2_name(int);			// Sets the name of the day in the month for Day 2
+	void set_d3_name(int);			// Sets the name of the day in the month for Day 3
+	string* get_d1_name(void);		// Gets the name of the day in the month for Day 1
+	string* get_d2_name(void);		// Gets the name of the day in the month for Day 2
+	string* get_d3_name(void);		// Gets the name of the day in the month for Day 3
 	string* get_subs(void);			// Get subfolder content
 
 	// Core Functions

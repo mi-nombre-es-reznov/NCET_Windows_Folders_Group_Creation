@@ -56,16 +56,16 @@ This program is expected to provide different choices for creating different typ
   - [ ] Monthly YouTube Gaming
     - [X] Get month as a container folder
       - [X] Save month in a global array
-      - [ ] Create weekend folders
-        - [ ] Saturdays
-        - [ ] Sundays
-      - [ ] Get number of Saturdays and Sundays
-        - [ ] Keep each data piece global to be used later
-          - [ ] Ask for date of each Saturday
-          - [ ] Ask for date of each Sunday
-        - [ ] Have a global value of " - \<Game Type>" to be appended to each date
-          - [ ] Final value of one folder is: "8 August 2021 - \<Game Type>"
-          - [ ] Verify that folder names match this example
+      - [X] Create weekend folders
+        - [X] Saturdays
+        - [X] Sundays
+      - [X] Get number of Saturdays and Sundays
+        - [X] Keep each data piece global to be used later
+          - [X] Ask for date of each Saturday
+          - [X] Ask for date of each Sunday
+        - [X] Have a global value of " - \<Game Type>" to be appended to each date
+          - [X] Final value of one folder is: "8 August 2021 - \<Game Type>"
+          - [X] Verify that folder names match this example
       - [ ] Create a global array to create sub-folders that go in every weekend
         - [ ] Sub-folders per folder
           - [ ] Completed Video
