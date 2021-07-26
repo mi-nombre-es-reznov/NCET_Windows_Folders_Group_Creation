@@ -107,20 +107,20 @@ void NEW_MONTH_YT::generate_mappings(string path)
 	if (get_num_d1() != 0)
 	{
 		set_d1_name(get_num_d1());
+		system("pause");
 	}
-	system("pause");
 
 	if (get_num_d2() != 0)
 	{
 		set_d2_name(get_num_d2());
+		system("pause");
 	}
-	system("pause");
 
 	if (get_num_d3() != 0)
 	{
 		set_d3_name(get_num_d3());
+		system("pause");
 	}
-	system("pause");
 
 	// Create folders from map
 	create_folders(full_path);
@@ -240,11 +240,12 @@ void NEW_MONTH_YT::set_d1_name(int num_days)
 	string full_name;
 	string space = " ";
 	string* D1 = get_d1_name();
+	string* DAYS = get_game_days();
 
 	for (int i = 0; i < num_days; i++)
 	{
 		system("CLS");
-		cout << "What day and year is this folder? (day year): ";
+		cout << DAYS[0] << " week " << (i + 1) << " information? (day year) : ";
 		cin >> day >> year;
 
 		// Concatenate folder name together
@@ -283,11 +284,12 @@ void NEW_MONTH_YT::set_d2_name(int num_days)
 	string full_name;
 	string space = " ";
 	string* D2 = get_d2_name();
+	string* DAYS = get_game_days();
 
 	for (int i = 0; i < num_days; i++)
 	{
 		system("CLS");
-		cout << "What day and year is this folder? (day year): ";
+		cout << DAYS[1] << " week " << (i + 1) << " information? (day year) : ";
 		cin >> day >> year;
 
 		// Concatenate folder name together
@@ -326,11 +328,12 @@ void NEW_MONTH_YT::set_d3_name(int num_days)
 	string full_name;
 	string space = " ";
 	string* D3 = get_d3_name();
+	string* DAYS = get_game_days();
 
 	for (int i = 0; i < num_days; i++)
 	{
 		system("CLS");
-		cout << "What day and year is this folder? (day year): ";
+		cout << DAYS[2] << " week " << (i + 1) << " information? (day year) : ";
 		cin >> day >> year;
 
 		// Concatenate folder name together
