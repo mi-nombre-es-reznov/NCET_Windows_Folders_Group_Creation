@@ -53,7 +53,7 @@ This program is expected to provide different choices for creating different typ
           - [X] 2) Time Clock
       - [X] 3) Book Data
       - [X] 4) Lessons
-  - [ ] Monthly YouTube Gaming
+  - [X] Monthly YouTube Gaming
     - [X] Get month as a container folder
       - [X] Save month in a global array
       - [X] Create weekend folders
@@ -66,11 +66,11 @@ This program is expected to provide different choices for creating different typ
         - [X] Have a global value of " - \<Game Type>" to be appended to each date
           - [X] Final value of one folder is: "8 August 2021 - \<Game Type>"
           - [X] Verify that folder names match this example
-      - [ ] Create a global array to create sub-folders that go in every weekend
-        - [ ] Sub-folders per folder
-          - [ ] Completed Video
-          - [ ] Working Directory
-          - [ ] Social Media & YouTube documents
+      - [X] Create a global array to create sub-folders that go in every weekend
+        - [X] Sub-folders per folder
+          - [X] Completed Video
+          - [X] Working Directory
+          - [X] Social Media & YouTube documents
 - [X] Set up code to pull from different lists/arrays/vectors (choose what is most efficient)
 - [X] Ask for all names, showing which part of the hierarchy it relates to.
 - [X] Generate a hierarchy of names from code and display them to the user to check for validation.
@@ -86,3 +86,6 @@ This program is expected to provide different choices for creating different typ
 
 ## What are potential future plans?
 1. Read hierarchy from a .txt file, using an established code for unpacking.
+2. Create a method to select which YouTube channel to create folders for. (i.e. gaming, programming, how-to, etc.)
+   
+>  This folder creation function will change the contents immediately and create folders based on selected option without additional input from the user, aside from choice.

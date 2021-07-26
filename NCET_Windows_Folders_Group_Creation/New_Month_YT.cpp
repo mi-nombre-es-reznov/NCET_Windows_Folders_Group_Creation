@@ -41,13 +41,9 @@ void NEW_MONTH_YT::generate_mappings(string path)
 	set_month();
 	month = get_month();
 
-	system("CLS");
-	cout << "Month selected: " << month << endl;
-	system("pause");
-
 	// Create encompassing folder
 	system("CLS");
-	full_path = (path + "/" + month);
+	full_path = (path + "\\" + month);
 	if (_mkdir(full_path.c_str()) == 0)
 	{
 		cout << "Base folder created!" << endl;
@@ -103,6 +99,8 @@ void NEW_MONTH_YT::generate_mappings(string path)
 		{
 			set_num_d3(day_cnt);
 		}
+
+		day_cnt = 0;
 	}
 
 	// Get the dates from each day
@@ -125,8 +123,7 @@ void NEW_MONTH_YT::generate_mappings(string path)
 	system("pause");
 
 	// Create folders from map
-
-	// Generate subfolders for each day in posting month
+	create_folders(full_path);
 
 	// Open folder once completed
 	string tmp = (expl + path);
@@ -285,7 +282,7 @@ void NEW_MONTH_YT::set_d2_name(int num_days)
 	int day, year;
 	string full_name;
 	string space = " ";
-	string* D2 = get_d1_name();
+	string* D2 = get_d2_name();
 
 	for (int i = 0; i < num_days; i++)
 	{
@@ -328,7 +325,7 @@ void NEW_MONTH_YT::set_d3_name(int num_days)
 	int day, year;
 	string full_name;
 	string space = " ";
-	string* D3 = get_d1_name();
+	string* D3 = get_d3_name();
 
 	for (int i = 0; i < num_days; i++)
 	{
@@ -386,4 +383,139 @@ string* NEW_MONTH_YT::get_d2_name(void)
 string* NEW_MONTH_YT::get_d3_name(void)
 {
 	return d3_name;
+}
+
+// Get subfolders that go in every main folder
+string* NEW_MONTH_YT::get_subs(void)
+{
+	return sub_folders;
+}
+
+// Get the size of the gaming sub folders array
+int NEW_MONTH_YT::get_game_subs_size(void)
+{
+	return Gaming_sub_folders_size;
+}
+
+// Create the folders from the main data aquired in previous step
+void NEW_MONTH_YT::create_folders(string path)
+{
+	// Local Variables
+	string full_path;
+	string sub_path;
+	string* DAYS = get_game_days();
+	string* D1 = get_d1_name();
+	string* D2 = get_d2_name();
+	string* D3 = get_d3_name();
+	string* SUBS = get_subs();
+
+	// Create folders for Day 1
+	for (int i = 0; i < get_num_d1(); i++)
+	{
+		full_path = (path + "/" + DAYS[i] + "/" + D1[i]);	// Create full path for Saturday's days
+
+		// Make the directory
+		if (_mkdir(full_path.c_str()) == 0)
+		{
+			cout << "Folder: " << D1[i] << " has been successfully created!" << endl;
+			Sleep(500);
+		}
+		else
+		{
+			cout << DAYS[0] << " day " << (i + 1) << " path failed to create folder." << endl;
+			Sleep(1000);
+		}
+
+		// Generate subfolders for each day in posting month
+		for (int j = 0; j < get_game_subs_size(); j++)
+		{
+			sub_path = (full_path + "/" + SUBS[j]);	// Get each subfolder path and create directory
+
+			// Make the directory
+			if (_mkdir(sub_path.c_str()) == 0)
+			{
+				cout << "Folder: " << SUBS[j] << " has been successfully created!" << endl;
+				Sleep(250);
+			}
+			else
+			{
+				cout << "Folder: " << SUBS[j] << " failed to be created!" << endl;
+				Sleep(1000);
+			}
+		}
+	}
+
+	// Create folders for Day 2
+	for (int i = 0; i < get_num_d2(); i++)
+	{
+		full_path = (path + "/" + DAYS[i] + "/" + D2[i]);	// Create full path for Saturday's days
+		system("CLS");
+
+		// Make the directory
+		if (_mkdir(full_path.c_str()) == 0)
+		{
+			cout << "Folder: " << D2[i] << " has been successfully created!" << endl;
+			Sleep(250);
+		}
+		else
+		{
+			cout << DAYS[1] << " day " << (i + 1) << " path failed to create folder." << endl;
+			Sleep(1000);
+		}
+
+		// Generate subfolders for each day in posting month
+		for (int j = 0; j < get_game_subs_size(); j++)
+		{
+			sub_path = (full_path + "/" + SUBS[j]);	// Get each subfolder path and create directory
+
+			// Make the directory
+			if (_mkdir(sub_path.c_str()) == 0)
+			{
+				cout << "Folder: " << SUBS[j] << " has been successfully created!" << endl;
+				Sleep(250);
+			}
+			else
+			{
+				cout << "Folder: " << SUBS[j] << " failed to be created!" << endl;
+				Sleep(1000);
+			}
+		}
+	}
+
+	// Create folders for Day 3
+	for (int i = 0; i < get_num_d3(); i++)
+	{
+		full_path = (path + "/" + DAYS[i] + "/" + D3[i]);	// Create full path for Saturday's days
+		system("CLS");
+
+		// Make the directory
+		if (_mkdir(full_path.c_str()) == 0)
+		{
+			cout << "Folder: " << D3[i] << " has been successfully created!" << endl;
+			Sleep(500);
+		}
+		else
+		{
+			cout << DAYS[2] << " day " << (i + 1) << " path failed to create folder." << endl;
+			Sleep(1000);
+		}
+
+		// Generate subfolders for each day in posting month
+		for (int j = 0; j < get_game_subs_size(); j++)
+		{
+			sub_path = (full_path + "/" + SUBS[j]);	// Get each subfolder path and create directory
+
+			// Make the directory
+			if (_mkdir(sub_path.c_str()) == 0)
+			{
+				cout << "Folder: " << SUBS[j] << " has been successfully created!" << endl;
+				Sleep(500);
+			}
+			else
+			{
+				cout << "Folder: " << SUBS[j] << " failed to be created!" << endl;
+				Sleep(1000);
+			}
+		}
+	}
 }
