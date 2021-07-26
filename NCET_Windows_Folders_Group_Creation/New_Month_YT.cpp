@@ -271,7 +271,7 @@ void NEW_MONTH_YT::set_d1_name(int num_days)
 			}
 		}
 
-		Sleep(3000);	// Allows user to see what is going on
+		Sleep(500);	// Allows user to continue and see at end
 		cout << endl;
 	}
 }
@@ -315,7 +315,7 @@ void NEW_MONTH_YT::set_d2_name(int num_days)
 			}
 		}
 
-		Sleep(3000);	// Allows user to see what is going on
+		Sleep(500);	// Allows user to continue and see at end
 		cout << endl;
 	}
 }
@@ -359,7 +359,7 @@ void NEW_MONTH_YT::set_d3_name(int num_days)
 			}
 		}
 
-		Sleep(3000);	// Allows user to see what is going on
+		Sleep(500);	// Allows user to continue and see at end
 		cout << endl;
 	}
 }
@@ -415,13 +415,13 @@ void NEW_MONTH_YT::create_folders(string path)
 	// Create folders for Day 1
 	for (int i = 0; i < get_num_d1(); i++)
 	{
-		full_path = (path + "/" + DAYS[i] + "/" + D1[i]);	// Create full path for Saturday's days
+		full_path = (path + "/" + DAYS[0] + "/" + D1[i]);	// Create full path for Saturday's days
 
 		// Make the directory
 		if (_mkdir(full_path.c_str()) == 0)
 		{
 			cout << "Folder: " << D1[i] << " has been successfully created!" << endl;
-			Sleep(500);
+			Sleep(250);
 		}
 		else
 		{
@@ -451,7 +451,7 @@ void NEW_MONTH_YT::create_folders(string path)
 	// Create folders for Day 2
 	for (int i = 0; i < get_num_d2(); i++)
 	{
-		full_path = (path + "/" + DAYS[i] + "/" + D2[i]);	// Create full path for Saturday's days
+		full_path = (path + "/" + DAYS[1] + "/" + D2[i]);	// Create full path for Saturday's days
 		system("CLS");
 
 		// Make the directory
@@ -488,14 +488,14 @@ void NEW_MONTH_YT::create_folders(string path)
 	// Create folders for Day 3
 	for (int i = 0; i < get_num_d3(); i++)
 	{
-		full_path = (path + "/" + DAYS[i] + "/" + D3[i]);	// Create full path for Saturday's days
+		full_path = (path + "/" + DAYS[2] + "/" + D3[i]);	// Create full path for Saturday's days
 		system("CLS");
 
 		// Make the directory
 		if (_mkdir(full_path.c_str()) == 0)
 		{
 			cout << "Folder: " << D3[i] << " has been successfully created!" << endl;
-			Sleep(500);
+			Sleep(250);
 		}
 		else
 		{
@@ -512,7 +512,7 @@ void NEW_MONTH_YT::create_folders(string path)
 			if (_mkdir(sub_path.c_str()) == 0)
 			{
 				cout << "Folder: " << SUBS[j] << " has been successfully created!" << endl;
-				Sleep(500);
+				Sleep(250);
 			}
 			else
 			{
