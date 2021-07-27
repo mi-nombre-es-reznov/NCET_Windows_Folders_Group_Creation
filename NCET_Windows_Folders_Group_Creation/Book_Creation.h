@@ -2,9 +2,6 @@
 #ifndef BOOK_CREATION_H
 #define BOOK_CREATION_H
 
-#include <iostream>
-using namespace std;
-
 class BOOK_CREATION
 {
 private:
@@ -21,6 +18,7 @@ private:
 	int SUBS = 0;
 	char CHECK_PARTS;
 	char CHECK_SUBS;
+	char PTS_OR_SECS;
 public:
 	// Book Functions
 	void set_book(void);					// Sets the title of the book
@@ -35,6 +33,8 @@ public:
 	char get_subs_chk(void);				// Gets value for subsections check
 
 	// Setters and Getters
+	void set_pt_sec_val(char);				// Sets the value if parts or sections
+	char get_pt_sec_val(void);				// Gets the value if parts or sections
 	void set_parts_secs(string);			// Sets the parts/sections array
 	string* get_parts_secs(void);			// Get the parts/sections array
 	void set_chapters(string);				// Set the chapters array
@@ -43,6 +43,8 @@ public:
 	string* get_subs(void);					// Get the sub-chapters array
 	void set_appendixes(string);			// Set the appendixes array
 	string* get_appendixes(void);			// Get the appendixes array
+	void set_app_val(int);					// Set the appendixes value
+	int get_app_val(void);					// Get the apendixes value
 
 	// Main Functions
 	void set_mappings(string);				// Create the main function roadmap

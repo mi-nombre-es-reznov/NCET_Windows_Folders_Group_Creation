@@ -4,6 +4,46 @@
 #include <Windows.h>
 using namespace std;
 
+// Local Functions
+void any_appendixes(void)
+{
+	// Local Variables
+	BOOK_CREATION BOOK;
+	char choice = 'a';
+	int num_appendixes = 0;
+
+	while (choice != 'y' && choice != 'n')
+	{
+		system("CLS");
+		cout << "Does this book have any appendixes you would like to save? [Y/n]: ";
+		cin >> choice;
+
+		choice = tolower(choice);	// Makes choice a lowercase
+	}
+
+	if (choice == 'y')
+	{
+		while (num_appendixes < 1 || num_appendixes > 5)
+		{
+			system("CLS");
+			cout << "How many appendixes do you want to save? ";
+			cin >> num_appendixes;
+
+			if (num_appendixes < 1 || num_appendixes > 5)
+			{
+				system("CLS");
+				cout << "Please enter a valid number [1 - 5]" << endl;
+				Sleep(1000);
+				num_appendixes = 0;
+			}
+		}
+
+		BOOK.set_app_val(num_appendixes);	// Sets the value of the number of saved appendixes
+	}
+	
+	system("CLS");
+}
+
 void BOOK_CREATION::set_mappings(string PATH)
 {
 	// Local Variables
@@ -25,14 +65,15 @@ void BOOK_CREATION::set_mappings(string PATH)
 	system("pause");
 
 	// Get Appendixes
+	any_appendixes();	// Checks and saves number of appendixes up to 5
+
+	// Generate map
 
 	// Get Parts/Sections
 
 	// Get Chapters
 
 	// Get Sub-Chapters
-
-	// Generate map
 
 	// Create folders
 
@@ -65,6 +106,7 @@ char BOOK_CREATION::check_parts_sections(void)
 {
 	// Local Variables
 	char parts_sections = 'a';
+	char ps_val = 'a';
 
 	while (parts_sections != 'n' && parts_sections != 'y')
 	{
@@ -80,6 +122,25 @@ char BOOK_CREATION::check_parts_sections(void)
 		{
 			system("CLS");
 			cout << "Please enter a valid value. [Y/n]" << endl;
+			Sleep(1000);
+		}
+	}
+
+	while (ps_val != 'p' && ps_val != 's')
+	{
+		system("CLS");
+		cout << "Is this book broken up by parts or sections? [P/s]: ";
+		cin >> ps_val;
+
+		if (ps_val == 'P' || ps_val == 'p' || ps_val == 'S' || ps_val == 's')
+		{
+			ps_val = tolower(ps_val);
+			set_pt_sec_val(ps_val);
+		}
+		else
+		{
+			system("CLS");
+			cout << "Enter a valid value.[P / s]" << endl;
 			Sleep(1000);
 		}
 	}
@@ -136,4 +197,28 @@ void BOOK_CREATION::set_subs_chk(char subs)
 char BOOK_CREATION::get_subs_chk(void)
 {
 	return CHECK_SUBS;
+}
+
+// Sets the parts or section value
+void BOOK_CREATION::set_pt_sec_val(char val)
+{
+	PTS_OR_SECS = val;
+}
+
+// Gets the value of either parts or sections
+char BOOK_CREATION::get_pt_sec_val(void)
+{
+	return PTS_OR_SECS;
+}
+
+// Sets the number appendixes to save
+void BOOK_CREATION::set_app_val(int val)
+{
+	APP = val;
+}
+
+// Gets the saved number of appendixes
+int BOOK_CREATION::get_app_val(void)
+{
+	return APP;
 }
