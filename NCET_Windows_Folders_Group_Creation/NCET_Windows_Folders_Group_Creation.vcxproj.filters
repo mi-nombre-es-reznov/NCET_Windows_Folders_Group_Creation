@@ -21,6 +21,12 @@
     <ClCompile Include="New_User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="New_Month_YT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Book_Creation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">
@@ -29,6 +35,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="New_User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="New_Month_YT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Book_Creation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

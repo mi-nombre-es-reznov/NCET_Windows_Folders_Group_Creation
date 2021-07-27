@@ -15,8 +15,8 @@ This program is expected to provide different choices for creating different typ
   - [X] Get path from user __(can only save locally, with just a file name creating a folder at the location of the executable file.)__
 - [X] Allow for choice between groupings for user to select
   - [ ] Book
-    - [ ] Get book name for encompassing folder
-      - [ ] Place book name as a global variable for later use
+    - [X] Get book name for encompassing folder
+      - [X] Place book name as a global variable for later use
     - [ ] Get encompassing sections of the book. Ask what style they use and counts
       - [ ] Ask if parts or sections are involved
         - [ ] Get part or section

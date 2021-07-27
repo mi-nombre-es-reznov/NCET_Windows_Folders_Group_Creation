@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Book_Creation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="New_Month_YT.cpp" />
     <ClCompile Include="New_User.cpp" />
@@ -147,6 +148,7 @@
     <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Book_Creation.h" />
     <ClInclude Include="New_Month_YT.h" />
     <ClInclude Include="New_User.h" />
   </ItemGroup>

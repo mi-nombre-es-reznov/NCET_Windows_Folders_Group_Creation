@@ -13,6 +13,7 @@
 #include <Windows.h>
 #include "New_User.h"
 #include "New_Month_YT.h"
+#include "Book_Creation.h"
 using namespace std;
 
 // Global Values
@@ -29,6 +30,7 @@ int main()
 	// Class Objects
 	New_User user;
 	NEW_MONTH_YT YT;
+	BOOK_CREATION BC;
 
 	// Local Variables
 	int group_choice = -1;
@@ -40,7 +42,7 @@ int main()
 	// Choice mappings
 	if (group_choice == 0)
 	{
-
+		BC.set_mappings(PATH);
 	}
 	else if (group_choice == 1)
 	{
