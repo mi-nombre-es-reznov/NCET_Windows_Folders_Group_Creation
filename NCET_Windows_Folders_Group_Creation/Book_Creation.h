@@ -1,24 +1,27 @@
 #pragma once
 #ifndef BOOK_CREATION_H
 #define BOOK_CREATION_H
+#include <string>
+using namespace std;
 
 class BOOK_CREATION
 {
 private:
 	string BOOK_NAME;
-	string PART_SECTION[10] = { "", "", "", "", "", "", "", "", "", "" };
-	string CHAPTERS[50] = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
-	string APPENDIXES[5] = { "", "", "", "", "" };
-	string SUB_CHPTRS[100] = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
+	string PART_SECTION[9];
+	string CHAPTERS[50];
+	string APPENDIXES[5];
+	string SUB_CHPTRS[300];
 	string MAP[50];
+	int CURR_SUBS = 0;
 	int GET_PRTS_SECS_CNT = 0;
 	int PARTS_SECS_CNT = 0;
 	int APP = 0;
 	int CHPTRS = 0;
 	int SUBS = 0;
-	char CHECK_PARTS;
-	char CHECK_SUBS;
-	char PTS_OR_SECS;
+	char CHECK_PARTS = 'a';
+	char CHECK_SUBS = 'a';
+	char PTS_OR_SECS = 'a';
 public:
 	// Book Functions
 	void set_book(void);					// Sets the title of the book
@@ -33,11 +36,11 @@ public:
 	char get_subs_chk(void);				// Gets value for subsections check
 
 	// Setters and Getters
-	void set_pt_sec_val(char);				// Sets the value if parts or sections
-	char get_pt_sec_val(void);				// Gets the value if parts or sections
-	void set_parts_secs(string);			// Sets the parts/sections array
+	void set_pt_sec_val(char);				// Sets the value of parts or sections
+	char get_pt_sec_val(void);				// Gets the value of parts or sections
+	void set_parts_secs(int, string);		// Sets the parts/sections array
 	string* get_parts_secs(void);			// Get the parts/sections array
-	void set_chapters(string);				// Set the chapters array
+	void set_chapters(string, int);			// Set the chapters array
 	string* get_chapters(void);				// Get the chapters array
 	void set_subs(string);					// Set the sub-chapters array
 	string* get_subs(void);					// Get the sub-chapters array
@@ -45,10 +48,26 @@ public:
 	string* get_appendixes(void);			// Get the appendixes array
 	void set_app_val(int);					// Set the appendixes value
 	int get_app_val(void);					// Get the apendixes value
+	void set_section_value(string);			// Sets the number of parts or sections
+	int get_section_value(void);			// Gets the number of parts or sections
+	void set_chapter_cnt(int);				// Sets the number of chapters in the book
+	int get_chapter_cnt(void);				// Gets the number of chapters in the book
+	void set_subs_cnt(void);				// Sets the number of sub-chapters
+	int get_subs_cnt(void);					// Gets the number of sub-chapters
+	void set_pps(void);						// Sets the number of parts per section
+	void set_curr_subs(int);				// Sets the current substitution value in array
+	int get_curr_subs(void);				// Gets the current substitution value in array
+	void append_map(int, string);			// Adds formatted string value to mappings array
+	string* get_map(void);					// Gets the current mappings for all values in mappings array
 
 	// Main Functions
 	void set_mappings(string);				// Create the main function roadmap
 	void create_folders(void);				// Create the folders from mapping
+	void chaps_pps(int, char);		// Allows for the gathering and traversing of data, and writing of chapters
+
+	// Variables
+	int map_pos = 0;						// Holds the current value of the mapping position
+	int curr_chap_cnt = 0;					// Holds the current value of the chapter position
 };
 
 #endif // !BOOK_CREATION_H
