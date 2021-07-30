@@ -42,7 +42,7 @@ public:
 	string* get_parts_secs(void);			// Get the parts/sections array
 	void set_chapters(string, int);			// Set the chapters array
 	string* get_chapters(void);				// Get the chapters array
-	void set_subs(string);					// Set the sub-chapters array
+	void set_subs(int, string);				// Set the sub-chapters array
 	string* get_subs(void);					// Get the sub-chapters array
 	void set_appendixes(string);			// Set the appendixes array
 	string* get_appendixes(void);			// Get the appendixes array
@@ -52,7 +52,7 @@ public:
 	int get_section_value(void);			// Gets the number of parts or sections
 	void set_chapter_cnt(int);				// Sets the number of chapters in the book
 	int get_chapter_cnt(void);				// Gets the number of chapters in the book
-	void set_subs_cnt(void);				// Sets the number of sub-chapters
+	void set_subs_cnt(int);					// Sets the number of sub-chapters
 	int get_subs_cnt(void);					// Gets the number of sub-chapters
 	void set_pps(void);						// Sets the number of parts per section
 	void set_curr_subs(int);				// Sets the current substitution value in array
@@ -63,12 +63,18 @@ public:
 	// Main Functions
 	void set_mappings(string);				// Create the main function roadmap
 	void create_folders(void);				// Create the folders from mapping
-	void chaps_pps(int, char);				// Allows for the gathering and traversing of data, and writing of chapters
+
+	// Mapping Functions
+	void chaps_pps(int, char);				// Allows for the gathering and traversing of data, and writing of chapters with part or section
 	void chap_names(int, int);				// Gets the chapters names and puts them in the CHPTRS array
+	void subs_chaps(int);					// Allows for the gathering and traversing of data, and writing of sub-chapters
+	void sub_names(int, int);				// Gets the sub-chapter names and puts them in the SUB_CHPTRS array
+	void chaps_no_pps(void);					// Allows for gathering and traversing of data, and writing of data with NO part or section
 
 	// Variables
 	int map_pos = 0;						// Holds the current value of the mapping position
 	int curr_chap_cnt = 0;					// Holds the current value of the chapter position
+	int curr_sub_cnt = 0;					// Holds the current writing of the sub-chapter position
 };
 
 #endif // !BOOK_CREATION_H

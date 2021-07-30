@@ -118,6 +118,7 @@ void BOOK_CREATION::set_mappings(string PATH)
 	char check_subs;
 	string part_name;
 	string* Parts = get_parts_secs();
+	string* CHAPS = get_chapters();
 	string expl = "explorer ";	// Used to concatenate strings to open final path
 
 	// ROOT
@@ -153,23 +154,24 @@ void BOOK_CREATION::set_mappings(string PATH)
 		}
 	}
 
-	// Get Sub-Chapters
-	if (get_subs_chk() == 'y')
-		set_subs_cnt();
-
 	// Generate Map
 	if (get_pts_chk() == 'y') // Checks if there are any parts or sections
 	{
 		// Check if there are any sub-sections -- YES
 		if (get_subs_chk() == 'y')
 		{
-			for (int i = 0; i < get_section_value(); i++)
+			for (int i = 0; i < get_section_value(); i++)		// For every part or section...
 			{
 				// Ask how many chapters per part or section
-				chaps_pps(i, get_pt_sec_val());	// Sets up data and writes mapping information
+				chaps_pps(i, get_pt_sec_val());		// Sets up data and writes mapping information
 				chap_names(get_chapter_cnt(), i);	// Allows for user to input chapter names under sections
+			}
 
+			for (int i = 0; i < get_chapter_cnt(); i++)			// For every chapter...
+			{
 				// Ask how many sub-sections per chapter
+				subs_chaps(i);
+				sub_names(get_subs_cnt(), i);
 			}
 		}
 		// Check if there are any sub-sections -- NO
@@ -186,10 +188,27 @@ void BOOK_CREATION::set_mappings(string PATH)
 	else if (get_pts_chk() == 'n')
 	{
 		// Check if there are any sub-sections -- YES
+		if (get_subs_chk() == 'y')
+		{
 			// Ask for names of chapters
-			// Get names of sub-sections under chapter
+			chaps_no_pps();						// Sets up data and writes mapping information
+			chap_names(get_chapter_cnt(), -1);	// Allows for user to input chapter names under sections
+
+			// Get the names of each sub-chapter
+			for (int i = 0; i < get_chapter_cnt(); i++)			// For every chapter...
+			{
+				// Ask how many sub-sections per chapter
+				subs_chaps(i);
+				sub_names(get_subs_cnt(), i);
+			}
+		}
 		// Check if there are any sub-sections -- NO
+		else if (get_subs_chk() == 'n')
+		{
 			// Ask for names of chapters
+			chaps_no_pps();						// Sets up data and writes mapping information
+			chap_names(get_chapter_cnt(), -1);	// Allows for user to input chapter names under sections
+		}
 	}
 
 	// Testing
@@ -198,22 +217,32 @@ void BOOK_CREATION::set_mappings(string PATH)
 	string* M = get_map();
 	string* A = get_parts_secs();
 	string* C = get_chapters();
+	string* S = get_subs();
 
 	system("CLS");
 
 	for (int i = 0; i < get_section_value(); i++)
 	{
-		cout << "Map Output value " << (i + 1) << " is: " << M[i] << endl;
+		if(M[i] != "")
+			cout << "Map Output value " << (i + 1) << " is: " << M[i] << endl;
 	}
 
 	for (int i = 0; i < get_section_value(); i++)
 	{
-		cout << "Section " << (i + 1) << " is: " << A[i] << endl;
+		if(A[i] != "")
+			cout << "Section " << (i + 1) << " is: " << A[i] << endl;
 	}
 
 	for (int i = 0; i < 50; i++)
 	{
-		cout << "Chapters " << (i + 1) << " is: " << C[i] << endl;
+		if(C[i] != "")
+			cout << "Chapters " << (i + 1) << " is: " << C[i] << endl;
+	}
+
+	for (int i = 0; i < 300; i++)
+	{
+		if(S[i] != "")
+			cout << "Sub-Chapter " << (i + 1) << " is: " << S[i] << endl;
 	}
 
 	system("pause");
@@ -284,8 +313,6 @@ char BOOK_CREATION::check_parts_sections(void)
 		if (ps_val == 'P' || ps_val == 'p' || ps_val == 'S' || ps_val == 's')
 		{
 			ps_val = tolower(ps_val);
-			cout << "Testing ps_val value: " << ps_val << endl;
-			system("pause");
 			set_pt_sec_val(ps_val);
 
 			// Get quantity of sections/parts
@@ -397,7 +424,7 @@ void BOOK_CREATION::set_section_value(string choice)
 		if (isdigit(num_secs) != 0)
 		{
 			cout << "Input accepted as: " << num_secs;
-			Sleep(1000);
+			Sleep(200);
 		}
 		else
 		{
@@ -441,18 +468,8 @@ int BOOK_CREATION::get_chapter_cnt(void)
 }
 
 // Sets the number of sub-chapters in the book
-void BOOK_CREATION::set_subs_cnt(void)
+void BOOK_CREATION::set_subs_cnt(int count)
 {
-	// Local Variables
-	int count = 0;
-
-	while (count < 1)
-	{
-		system("CLS");
-		cout << "How many sub-chapters are in the book? ";
-		cin >> count;
-	}
-
 	SUBS = count;
 }
 
@@ -496,4 +513,86 @@ void BOOK_CREATION::set_chapters(string value, int pos)
 string* BOOK_CREATION::get_chapters(void)
 {
 	return CHAPTERS;
+}
+
+// Inserts a value into the sub-chapter array
+void BOOK_CREATION::set_subs(int pos, string setter)
+{
+	SUB_CHPTRS[pos] = setter;
+}
+
+// Gets the array of sub-chapters
+string* BOOK_CREATION::get_subs(void)
+{
+	return SUB_CHPTRS;
+}
+
+// Gathers the necessary data to map the sub-chapters according to the chapters infomration
+void BOOK_CREATION::subs_chaps(int pos)
+{
+	// Local Variables
+	string* CH = get_chapters();
+	int beg_sub = 0;
+	int end_sub = 0;
+	int tot_subs = 0;
+	string write_map = "";
+
+	while ((beg_sub < 1 && end_sub < 1) && tot_subs < 1)
+	{
+		system("CLS");
+		cout << "What are the beginning and ending numbers for sub-chapters under Part '" << CH[pos] << "'? [beg end]: ";
+
+		cin >> beg_sub >> end_sub;
+
+		tot_subs = (end_sub - beg_sub + 1);
+	}
+
+	set_subs_cnt(tot_subs);															// Sets the current chapter count
+	write_map = ("CH " + to_string(beg_sub) + string(":") + to_string(end_sub));	// Sets the value up to be written as a map sequence
+	append_map(map_pos, write_map);													// Writes the value into mapping at current position
+	map_pos += 1;																	// Update counter to reflect next part of map array, globally
+}
+
+// Gets the names of the sub-chapters per chapter
+void BOOK_CREATION::sub_names(int cnt, int chap_pos)
+{
+	// Local Variables
+	string* CHAPS = get_chapters();
+	string name = "";
+	cin.ignore();	// To keep from duplicating and putting in one value for all Chapters
+
+	for (int i = 0; i < cnt; i++)
+	{
+		system("CLS");
+
+		while (name == "")
+		{
+			cout << "Under '" << CHAPS[chap_pos] << "', what is the name of sub-chapter " << (chap_pos + 1) << ":" << (i + 1) << "? ";
+			getline(cin, name);
+		}
+
+		set_subs(curr_sub_cnt, name);					// Writes chapter name to Chapters array
+		curr_sub_cnt += 1;								// Updates the position counter for chapters
+		name = "";										// Reset cin value to avoid first input being all input for loop
+	}
+}
+
+// NO PPS - Chapter name gathering
+void BOOK_CREATION::chaps_no_pps(void)
+{
+	// Local Variables
+	int tot_chaps = 0;
+	string write_map = "";
+
+	while (tot_chaps < 1)
+	{
+		system("CLS");
+		cout << "How many total chapters are there in '" << get_book() << "'? ";
+		cin >> tot_chaps;
+	}
+
+	set_chapter_cnt(tot_chaps);														// Sets the current chapter count
+	write_map = ("CH 1:" + to_string(tot_chaps));									// Sets the value up to be written as a map sequence
+	append_map(map_pos, write_map);													// Writes the value into mapping at current position
+	map_pos += 1;																	// Update counter to reflect next part of map array, globally
 }
