@@ -63,7 +63,8 @@ public:
 	// Main Functions
 	void set_mappings(string);				// Create the main function roadmap
 	void create_folders(void);				// Create the folders from mapping
-	void chaps_pps(int, char);		// Allows for the gathering and traversing of data, and writing of chapters
+	void chaps_pps(int, char);				// Allows for the gathering and traversing of data, and writing of chapters
+	void chap_names(int, int);				// Gets the chapters names and puts them in the CHPTRS array
 
 	// Variables
 	int map_pos = 0;						// Holds the current value of the mapping position
