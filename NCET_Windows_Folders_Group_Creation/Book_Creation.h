@@ -44,7 +44,7 @@ public:
 	string* get_chapters(void);				// Get the chapters array
 	void set_subs(int, string);				// Set the sub-chapters array
 	string* get_subs(void);					// Get the sub-chapters array
-	void set_appendixes(string);			// Set the appendixes array
+	void set_appendixes(string, int);		// Set the appendixes array
 	string* get_appendixes(void);			// Get the appendixes array
 	void set_app_val(int);					// Set the appendixes value
 	int get_app_val(void);					// Get the apendixes value
@@ -69,7 +69,9 @@ public:
 	void chap_names(int, int);				// Gets the chapters names and puts them in the CHPTRS array
 	void subs_chaps(int);					// Allows for the gathering and traversing of data, and writing of sub-chapters
 	void sub_names(int, int);				// Gets the sub-chapter names and puts them in the SUB_CHPTRS array
-	void chaps_no_pps(void);					// Allows for gathering and traversing of data, and writing of data with NO part or section
+	void chaps_no_pps(void);				// Allows for gathering and traversing of data, and writing of data with NO part or section
+	void any_appendixes(void);				// Appendix creation
+	void test_mappings(void);				// Test what map returns
 
 	// Variables
 	int map_pos = 0;						// Holds the current value of the mapping position

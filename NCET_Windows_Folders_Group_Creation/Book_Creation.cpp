@@ -4,12 +4,11 @@
 #include <Windows.h>
 using namespace std;
 
-// Local Functions
-void any_appendixes(void)
+void BOOK_CREATION::any_appendixes(void)
 {
 	// Local Variables
-	BOOK_CREATION BOOK;
 	char choice = 'a';
+	string app_val = "";
 	int num_appendixes = 0;
 
 	while (choice != 'y' && choice != 'n')
@@ -38,7 +37,20 @@ void any_appendixes(void)
 			}
 		}
 
-		BOOK.set_app_val(num_appendixes);	// Sets the value of the number of saved appendixes
+		set_app_val(num_appendixes);	// Sets the value of the number of saved appendixes
+	}
+
+	for (int i = 0; i < get_app_val(); i++)
+	{
+		while (app_val == "")
+		{
+			system("CLS");
+			cout << "What is the name of Appendix " << (i + 1) << "? ";
+			getline(cin, app_val);
+		}
+
+		set_appendixes(app_val, i);	// Sets the value of the appendix in the array
+		app_val = "";				// Reset variable
 	}
 	
 	system("CLS");
@@ -211,41 +223,8 @@ void BOOK_CREATION::set_mappings(string PATH)
 		}
 	}
 
-	// Testing
-	cout << "Starting testing" << endl;
-	system("pause");
-	string* M = get_map();
-	string* A = get_parts_secs();
-	string* C = get_chapters();
-	string* S = get_subs();
-
-	system("CLS");
-
-	for (int i = 0; i < get_section_value(); i++)
-	{
-		if(M[i] != "")
-			cout << "Map Output value " << (i + 1) << " is: " << M[i] << endl;
-	}
-
-	for (int i = 0; i < get_section_value(); i++)
-	{
-		if(A[i] != "")
-			cout << "Section " << (i + 1) << " is: " << A[i] << endl;
-	}
-
-	for (int i = 0; i < 50; i++)
-	{
-		if(C[i] != "")
-			cout << "Chapters " << (i + 1) << " is: " << C[i] << endl;
-	}
-
-	for (int i = 0; i < 300; i++)
-	{
-		if(S[i] != "")
-			cout << "Sub-Chapter " << (i + 1) << " is: " << S[i] << endl;
-	}
-
-	system("pause");
+	// Test mappings
+	test_mappings();
 
 	// Show mappings and verify
 
@@ -540,7 +519,7 @@ void BOOK_CREATION::subs_chaps(int pos)
 	while ((beg_sub < 1 && end_sub < 1) && tot_subs < 1)
 	{
 		system("CLS");
-		cout << "What are the beginning and ending numbers for sub-chapters under Part '" << CH[pos] << "'? [beg end]: ";
+		cout << "What are the global beginning and ending numbers for sub-chapters under Part '" << CH[pos] << "'? [beg end]: ";
 
 		cin >> beg_sub >> end_sub;
 
@@ -591,8 +570,64 @@ void BOOK_CREATION::chaps_no_pps(void)
 		cin >> tot_chaps;
 	}
 
-	set_chapter_cnt(tot_chaps);														// Sets the current chapter count
-	write_map = ("CH 1:" + to_string(tot_chaps));									// Sets the value up to be written as a map sequence
-	append_map(map_pos, write_map);													// Writes the value into mapping at current position
-	map_pos += 1;																	// Update counter to reflect next part of map array, globally
+	set_chapter_cnt(tot_chaps);	// Sets the current chapter count
+}
+
+// Sets the names of appendixes
+void BOOK_CREATION::set_appendixes(string val, int pos)
+{
+	APPENDIXES[pos] = val;
+}
+
+// Gets the array of appendixes
+string* BOOK_CREATION::get_appendixes(void)
+{
+	return APPENDIXES;
+}
+
+// Test map output
+void BOOK_CREATION::test_mappings(void)
+{
+	string* PART_SECTION = get_parts_secs();
+	string* CHAPTERS = get_chapters();
+	string* APPENDIXES = get_appendixes();
+	string* SUB_CHPTRS = get_subs();
+	string* MAP = get_map();
+
+	// Map
+	for (int i = 0; i < 50; i++)
+	{
+		if(MAP[i] != "")
+			cout << "Mapping " << (i + 1) << ": " << MAP[i] << endl;
+	}
+
+	// Parts or sections
+	for (int i = 0; i < 9; i++)
+	{
+		if (PART_SECTION[i] != "")
+			cout << "PS Value " << (i + 1) << ": " << PART_SECTION[i] << endl;
+	}
+
+	// Appendixes
+	for (int i = 0; i < 5; i++)
+	{
+		if (APPENDIXES[i] != "")
+			cout << "Appendixes " << (i + 1) << ": " << APPENDIXES[i] << endl;
+	}
+
+	// Chapters
+	for (int i = 0; i < 50; i++)
+	{
+		if (CHAPTERS[i] != "")
+			cout << "Chapters " << (i + 1) << ": " << CHAPTERS[i] << endl;
+	}
+
+	// Sub-chapters
+	for (int i = 0; i < 300; i++)
+	{
+		if (SUB_CHPTRS[i] != "")
+			cout << "Sub-Chapters " << (i + 1) << ": " << SUB_CHPTRS[i] << endl;
+	}
+
+	system("pause");
 }
