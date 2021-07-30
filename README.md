@@ -17,19 +17,21 @@ This program is expected to provide different choices for creating different typ
   - [ ] Book
     - [X] Get book name for encompassing folder
       - [X] Place book name as a global variable for later use
-    - [ ] Get encompassing sections of the book. Ask what style they use and counts
-      - [ ] Ask if parts or sections are involved
-        - [ ] Get part or section
-          - [ ] Parts
-            - [ ] Get parts count
-          - [ ] Section
-            - [ ] Get section count
-      - [ ] Chapters
-        - [ ] Get chapter count per section
-      - [ ] Sub-chapters
-        - [ ] Get sub-chapter count per chapter
-      - [ ] Appendixes
-        - [ ] Get usable appendixes count
+    - [X] Get encompassing sections of the book. Ask what style they use and counts
+      - [X] Ask if parts or sections are involved
+        - [X] Get part or section
+          - [X] Parts
+            - [X] Get parts count
+          - [X] Section
+            - [X] Get section count
+      - [X] Chapters
+        - [X] Get chapter count per section
+      - [X] Sub-chapters
+        - [X] Get sub-chapter count per chapter
+      - [X] Appendixes
+        - [X] Get usable appendixes count
+    - [ ] Verify user input with user
+    - [ ] Create folders if user has verified and approved
   - [X] New User (Tutoring)
     - [X] Get name of Tutee
       - [X] Save to a global variable for later
