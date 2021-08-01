@@ -118,6 +118,7 @@ void BOOK_CREATION::chap_names(int cnt, int sec_pos)
 			}
 		}
 
+		name = (to_string(i + 1) + ") " + name);		// Assigns a number to the Chapter variable
 		set_chapters(name, curr_chap_cnt);				// Writes chapter name to Chapters array
 		curr_chap_cnt += 1;								// Updates the position counter for chapters
 		name = "";										// Reset cin value to avoid first input being all input for loop
@@ -181,6 +182,8 @@ void BOOK_CREATION::set_mappings(string PATH)
 				cout << get_book() << "'s Section " << (i + 1) << " name: ";
 				getline(cin, part_name);
 			}
+
+			part_name = (to_string(i + 1) + ") " + part_name);	// Assigns a number to the Part/Section variable
 
 			set_parts_secs(i, part_name);
 		}
@@ -580,6 +583,7 @@ void BOOK_CREATION::sub_names(int cnt, int chap_pos)
 			getline(cin, name);
 		}
 
+		name = (to_string(i + 1) + ") " + name);		// Assigns a number to the Sub-Section variable
 		set_subs(curr_sub_cnt, name);					// Writes chapter name to Chapters array
 		curr_sub_cnt += 1;								// Updates the position counter for chapters
 		name = "";										// Reset cin value to avoid first input being all input for loop
@@ -818,9 +822,7 @@ void BOOK_CREATION::create_folders(string PATH)
 			}
 			else
 			{
-				system("CLS");
 				cout << "Appendixes folder failed to create!" << endl;
-				Sleep(1000);
 			}
 
 			// Create all appendixes folders
@@ -836,9 +838,7 @@ void BOOK_CREATION::create_folders(string PATH)
 				}
 				else
 				{
-					system("CLS");
 					cout << "'" << app_curr << "' failed to create!" << endl;
-					Sleep(1000);
 				}
 			}
 		}
@@ -857,9 +857,7 @@ void BOOK_CREATION::create_folders(string PATH)
 			}
 			else
 			{
-				system("CLS");
 				cout << "'" << arr_data << "' failed to create!" << endl;
-				Sleep(1000);
 			}
 
 			// Get chapter data
@@ -878,9 +876,7 @@ void BOOK_CREATION::create_folders(string PATH)
 				}
 				else
 				{
-					system("CLS");
 					cout << "'" << curr_chap << "' failed to create!" << endl;
-					Sleep(1000);
 				}
 			}
 		}
@@ -897,9 +893,7 @@ void BOOK_CREATION::create_folders(string PATH)
 			}
 			else
 			{
-				system("CLS");
 				cout << "'" << arr_data << "' failed to create!" << endl;
-				Sleep(1000);
 			}
 
 			// Get sub-chapter data
@@ -919,9 +913,7 @@ void BOOK_CREATION::create_folders(string PATH)
 				}
 				else
 				{
-					system("CLS");
 					cout << "'" << subies << "' failed to create!" << endl;
-					Sleep(1000);
 				}
 			}
 		}

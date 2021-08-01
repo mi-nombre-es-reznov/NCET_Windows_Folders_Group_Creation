@@ -14,7 +14,7 @@ This program is expected to provide different choices for creating different typ
 - [X] Locate and verify folder location
   - [X] Get path from user __(can only save locally, with just a file name creating a folder at the location of the executable file.)__
 - [X] Allow for choice between groupings for user to select
-  - [ ] Book
+  - [X] Book
     - [X] Get book name for encompassing folder
       - [X] Place book name as a global variable for later use
     - [X] Get encompassing sections of the book. Ask what style they use and counts
@@ -30,8 +30,8 @@ This program is expected to provide different choices for creating different typ
         - [X] Get sub-chapter count per chapter
       - [X] Appendixes
         - [X] Get usable appendixes count
-    - [ ] Verify user input with user
-    - [ ] Create folders if user has verified and approved
+    - [X] Verify user input with user
+    - [X] Create folders if user has verified and approved
   - [X] New User (Tutoring)
     - [X] Get name of Tutee
       - [X] Save to a global variable for later
