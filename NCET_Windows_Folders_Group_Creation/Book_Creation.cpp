@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <direct.h>
 using namespace std;
 
 void BOOK_CREATION::any_appendixes(void)
@@ -123,6 +124,24 @@ void BOOK_CREATION::chap_names(int cnt, int sec_pos)
 	}
 }
 
+bool validity(void)
+{
+	// Local Variables
+	char valid = 'a';
+
+	while (valid != 'y' && valid != 'n')
+	{
+		system("CLS");
+		cout << "Was the displayed data accurate? [Y/n]: ";
+		cin >> valid;
+	}
+
+	if (valid == 'y')
+		return true;
+	else if (valid == 'n')
+		return false;
+}
+
 void BOOK_CREATION::set_mappings(string PATH)
 {
 	// Local Variables
@@ -225,12 +244,21 @@ void BOOK_CREATION::set_mappings(string PATH)
 	}
 
 	// Test mappings
-	test_mappings();
+	//test_mappings();
 
 	// Show mappings and verify
 	verified = verify_mappings();
 
 	// Create folders
+	if (verified == true)
+		create_folders(PATH);						// Create folders for book
+	else if (verified == false)
+		cout << "Files failed to create due to accuracy error!" << endl;
+	else
+	{
+		cout << "Something went wrong. Check the code!!!" << endl;
+		Sleep(2000);
+	}
 
 	// Open PATH
 	string tmp = (expl + PATH);
@@ -650,6 +678,13 @@ bool BOOK_CREATION::verify_mappings(void)
 	int page_end = 0;
 	size_t splitter;
 	string temp = "";
+	int range = 0;
+	string arr_data = "";
+	string* PART_SECTION = get_parts_secs();
+	string* CHAPTERS = get_chapters();
+	string* APPENDIXES = get_appendixes();
+	string* SUB_CHPTRS = get_subs();
+	string* MAP = get_map();
 
 	// Get map value
 	for (int i = 0; i < map_pos; i++)
@@ -661,19 +696,234 @@ bool BOOK_CREATION::verify_mappings(void)
 		splitter = num_data.find(":");						// Looks for splitting key
 		page_start = stoi(num_data.substr(0, splitter));	// Gets the beginning value
 		page_end = stoi(num_data.substr(splitter + 1));		// Gets the ending value
-
-		// Test
-		system("CLS");
-		cout << "the values are...\nCategory: " << cat << "\nNum Data: " << num_data << endl;
-		cout << "Beginning value: " << page_start << endl;
-		cout << "Ending value: " << page_end << endl;
-		system("pause");
+		system("CLS");										// Clear screen for presentation to user
 
 		// First two letters contain 'PS' -- Has Part or Section
-//		if (cat == "PS")
-//		{
-//		}
+		if (cat == "PS")
+		{
+			cout << "Sections/Parts Data" << endl;
+			cout << "-------------------" << endl;
+			arr_data = PART_SECTION[ver_PS_val];
+			ver_PS_val += 1;	// Update global counter
+
+			cout << arr_data << endl;
+
+			// Get chapter data
+			range = (page_end - page_start + 1);	// Gets the range of chapters under Part or Section
+
+			cout << "\nChapters Data" << endl;
+			cout << "--------------" << endl;
+
+			// Get Chapter data
+			for (int i = 0; i < range; i++)
+			{
+				cout << "\t" << CHAPTERS[page_start + i - 1] << endl;	// Display Chapters
+			}
+		}
+		else if (cat == "CH")
+		{
+			cout << "\nChapters Data" << endl;
+			cout << "--------------" << endl;
+			arr_data = CHAPTERS[ver_CHAPS];
+			ver_CHAPS += 1;	// Update global counter
+
+			cout << arr_data << endl;
+
+			// Get chapter data
+			range = (page_end - page_start + 1);	// Gets the range of Sub-Chapters under Chapters
+
+			cout << "\nSub-Chapters Data" << endl;
+			cout << "-------------" << endl;
+
+			// Get Chapter data
+			for (int i = 0; i < range; i++)
+			{
+				cout << "\t" << SUB_CHPTRS[page_start + i - 1] << endl;	// Display Sub-Chapters
+			}
+		}
+
+		system("pause");
 	}
 
+	verify = validity(); // Verify accuracy for creation
+
+
 	return verify;
+}
+
+// Creates all folders
+void BOOK_CREATION::create_folders(string PATH)
+{
+	// Local Variables
+	string path_ps;
+	string path_ps_chap;
+	string path_subs;
+	ver_PS_val = 0;						// RESET Current PS val
+	ver_CHAPS = 0;						// RESET Current Chapters value
+	int curr_ps = 0;
+	int curr_chap = 0;
+	string* M = get_map();
+	string curr_map_item = "";
+	string cat = "";
+	string num_data = "";
+	int num_pages = 0;
+	int page_start = 0;
+	int page_end = 0;
+	size_t splitter;
+	string temp = "";
+	int range = 0;
+	string arr_data = "";
+	string* PART_SECTION = get_parts_secs();
+	string* CHAPTERS = get_chapters();
+	string* APPENDIXES = get_appendixes();
+	string* SUB_CHPTRS = get_subs();
+
+	// Create book folder
+	string book_folder = (PATH + "/" + get_book());
+
+	if (_mkdir(book_folder.c_str()) == 0)
+	{
+		cout << "Book folder created!" << endl;
+		Sleep(200);
+	}
+	else
+	{
+		system("CLS");
+		cout << "Book folder failed to create!" << endl;
+		Sleep(1000);
+	}
+
+	// Get map value
+	for (int i = 0; i < map_pos; i++)
+	{
+		curr_map_item = M[i];								// Get each item
+		cat = curr_map_item.substr(0, 2);					// Set category keyword
+		splitter = curr_map_item.find(" ");					// Split category and num data
+		num_data = curr_map_item.substr(splitter + 1);		// Splits at " "
+		splitter = num_data.find(":");						// Looks for splitting key
+		page_start = stoi(num_data.substr(0, splitter));	// Gets the beginning value
+		page_end = stoi(num_data.substr(splitter + 1));		// Gets the ending value
+		system("CLS");										// Clear screen for presentation to user
+
+		// Write appendixes to folders
+		if (get_app_val() > 0)
+		{
+			// Make appendixes folder
+			string make_app_folder = (PATH + "/" + get_book() + "/Appendixes");
+
+			if (_mkdir(make_app_folder.c_str()) == 0)
+			{
+				cout << "Appendixes folder created!" << endl;
+				Sleep(200);
+			}
+			else
+			{
+				system("CLS");
+				cout << "Appendixes folder failed to create!" << endl;
+				Sleep(1000);
+			}
+
+			// Create all appendixes folders
+			for (int i = 0; i < get_app_val(); i++)
+			{
+				string app_curr = APPENDIXES[i];
+				string path_app = (PATH + "/" + get_book() + "/Appendixes/" + app_curr);
+
+				if (_mkdir(path_app.c_str()) == 0)
+				{
+					cout << "'" << app_curr << "' created!" << endl;
+					Sleep(200);
+				}
+				else
+				{
+					system("CLS");
+					cout << "'" << app_curr << "' failed to create!" << endl;
+					Sleep(1000);
+				}
+			}
+		}
+
+		// First two letters contain 'PS' -- Has Part or Section
+		if (cat == "PS")
+		{
+			arr_data = PART_SECTION[ver_PS_val];								// Pull current Part/Section value
+			path_ps = (PATH + "/" + get_book() + "/" + arr_data);				// Part/Section Path
+			ver_PS_val += 1;	// Update global counter
+
+			if (_mkdir(path_ps.c_str()) == 0)
+			{
+				cout << "'" << arr_data << "' created!" << endl;
+				Sleep(200);
+			}
+			else
+			{
+				system("CLS");
+				cout << "'" << arr_data << "' failed to create!" << endl;
+				Sleep(1000);
+			}
+
+			// Get chapter data
+			range = (page_end - page_start + 1);	// Gets the range of chapters under Part or Section
+
+			// Get Chapter data
+			for (int i = 0; i < range; i++)
+			{
+				string curr_chap = CHAPTERS[page_start + i - 1];
+				path_ps_chap = (PATH + "/" + get_book() + "/" + arr_data + "/" + curr_chap);
+
+				if (_mkdir(path_ps_chap.c_str()) == 0)
+				{
+					cout << "'" << curr_chap << "' created!" << endl;
+					Sleep(200);
+				}
+				else
+				{
+					system("CLS");
+					cout << "'" << curr_chap << "' failed to create!" << endl;
+					Sleep(1000);
+				}
+			}
+		}
+		else if (cat == "CH")
+		{
+			arr_data = CHAPTERS[ver_CHAPS];
+			ver_CHAPS += 1;	// Update global counter
+			path_ps_chap = (PATH + "/" + get_book() + "/" + arr_data);
+
+			if (_mkdir(path_ps_chap.c_str()) == 0)
+			{
+				cout << "'" << arr_data << "' created!" << endl;
+				Sleep(200);
+			}
+			else
+			{
+				system("CLS");
+				cout << "'" << arr_data << "' failed to create!" << endl;
+				Sleep(1000);
+			}
+
+			// Get sub-chapter data
+			range = (page_end - page_start + 1);	// Gets the range of Sub-Chapters under Chapters
+
+			// Get Chapter data
+			for (int i = 0; i < range; i++)
+			{
+				cout << "\t" << SUB_CHPTRS[page_start + i - 1] << endl;	// Display Sub-Chapters
+				string subies = SUB_CHPTRS[page_start + i - 1];
+				path_subs = (PATH + "/" + get_book() + "/" + arr_data + "/" + subies);
+
+				if (_mkdir(path_subs.c_str()) == 0)
+				{
+					cout << "'" << subies << "' created!" << endl;
+					Sleep(200);
+				}
+				else
+				{
+					system("CLS");
+					cout << "'" << subies << "' failed to create!" << endl;
+					Sleep(1000);
+				}
+			}
+		}
+	}
 }

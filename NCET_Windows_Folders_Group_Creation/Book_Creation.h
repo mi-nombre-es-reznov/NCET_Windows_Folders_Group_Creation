@@ -62,7 +62,7 @@ public:
 
 	// Main Functions
 	void set_mappings(string);				// Create the main function roadmap
-	void create_folders(void);				// Create the folders from mapping
+	void create_folders(string);				// Create the folders from mapping
 
 	// Mapping Functions
 	void chaps_pps(int, char);				// Allows for the gathering and traversing of data, and writing of chapters with part or section
@@ -75,6 +75,8 @@ public:
 
 	// Display and Verify
 	bool verify_mappings(void);				// Core Function that pulls data and generates a user-friendly nested list map
+	int ver_PS_val = 0;						// Current PS val
+	int ver_CHAPS = 0;						// Current Chapters value
 
 	// Variables
 	int map_pos = 0;						// Holds the current value of the mapping position

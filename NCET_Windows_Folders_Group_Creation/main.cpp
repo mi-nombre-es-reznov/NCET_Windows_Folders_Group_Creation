@@ -35,9 +35,9 @@ int main()
 	// Local Variables
 	int group_choice = -1;
 
-	test_file_directory();	// Test user-given path
+	test_file_directory();			// Test user-given path
 	group_choice = select_group();	// User-selects folder creation option
-	system("CLS");	// Clear screen before entering options functions
+	system("CLS");					// Clear screen before entering options functions
 
 	// Choice mappings
 	if (group_choice == 0)
@@ -77,7 +77,8 @@ void test_file_directory(void)
 		cout << "Local Path to Test: ";
 		cin >> path;
 
-		path_app += TEST; // Append Test folder to path
+		path_app = path;	// Assign value of input to path app for testing
+		path_app += TEST;	// Append Test folder to path
 
 		valid = _mkdir(path_app.c_str());
 
