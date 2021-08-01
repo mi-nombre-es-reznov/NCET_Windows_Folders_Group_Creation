@@ -131,7 +131,8 @@ void BOOK_CREATION::set_mappings(string PATH)
 	string part_name;
 	string* Parts = get_parts_secs();
 	string* CHAPS = get_chapters();
-	string expl = "explorer ";	// Used to concatenate strings to open final path
+	string expl = "explorer ";			// Used to concatenate strings to open final path
+	bool verified;						// Used to determine folder creation
 
 	// ROOT
 	set_book(); // Sets Book Name
@@ -227,6 +228,7 @@ void BOOK_CREATION::set_mappings(string PATH)
 	test_mappings();
 
 	// Show mappings and verify
+	verified = verify_mappings();
 
 	// Create folders
 
@@ -630,4 +632,48 @@ void BOOK_CREATION::test_mappings(void)
 	}
 
 	system("pause");
+}
+
+// Verify mapping Core Function
+bool BOOK_CREATION::verify_mappings(void)
+{
+	// Local Variables
+	bool verify = false;
+	int curr_ps = 0;
+	int curr_chap = 0;
+	string* M = get_map();
+	string curr_map_item = "";
+	string cat = "";
+	string num_data = "";
+	int num_pages = 0;
+	int page_start = 0;
+	int page_end = 0;
+	size_t splitter;
+	string temp = "";
+
+	// Get map value
+	for (int i = 0; i < map_pos; i++)
+	{
+		curr_map_item = M[i];								// Get each item
+		cat = curr_map_item.substr(0, 2);					// Set category keyword
+		splitter = curr_map_item.find(" ");					// Split category and num data
+		num_data = curr_map_item.substr(splitter + 1);		// Splits at " "
+		splitter = num_data.find(":");						// Looks for splitting key
+		page_start = stoi(num_data.substr(0, splitter));	// Gets the beginning value
+		page_end = stoi(num_data.substr(splitter + 1));		// Gets the ending value
+
+		// Test
+		system("CLS");
+		cout << "the values are...\nCategory: " << cat << "\nNum Data: " << num_data << endl;
+		cout << "Beginning value: " << page_start << endl;
+		cout << "Ending value: " << page_end << endl;
+		system("pause");
+
+		// First two letters contain 'PS' -- Has Part or Section
+//		if (cat == "PS")
+//		{
+//		}
+	}
+
+	return verify;
 }

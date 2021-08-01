@@ -73,6 +73,9 @@ public:
 	void any_appendixes(void);				// Appendix creation
 	void test_mappings(void);				// Test what map returns
 
+	// Display and Verify
+	bool verify_mappings(void);				// Core Function that pulls data and generates a user-friendly nested list map
+
 	// Variables
 	int map_pos = 0;						// Holds the current value of the mapping position
 	int curr_chap_cnt = 0;					// Holds the current value of the chapter position
